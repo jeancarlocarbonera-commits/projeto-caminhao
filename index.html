@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0e12">
+  <meta name="description" content="Controle remoto em formato de cockpit para carrinho com ESP32.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Controle Carrinho ESP</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <h1>Controle Carrinho ESP</h1>
+    <div class="top-actions">
+      <button id="btn-instalar" class="btn-instalar" type="button">📲 Instalar aplicativo</button>
+      <div id="status" class="status-badge status-offline" role="status" aria-live="polite">Desconectado</div>
+    </div>
+  </header>
+
+  <section class="dashboard" aria-label="Telemetria dos controles">
+    <div class="telemetry-card">
+      <div id="val-velocidade" class="telemetry-val">0%</div>
+      <div class="telemetry-lbl">Acelerador</div>
+    </div>
+    <div class="telemetry-card">
+      <div id="val-direcao" class="telemetry-val">0°</div>
+      <div class="telemetry-lbl">Direção</div>
+    </div>
+  </section>
+
+  <main class="cockpit-container">
+    <section class="steering-section" aria-label="Controle de direção">
+      <div class="control-caption">VOLANTE</div>
+      <div class="steering-wrapper">
+        <div id="volante" class="steering-wheel" role="slider" aria-label="Volante" aria-valuemin="-90" aria-valuemax="90" aria-valuenow="0" tabindex="0">
+          <div class="steering-center"></div>
+        </div>
+      </div>
+      <div class="control-hint">Arraste para os lados</div>
+    </section>
+
+    <section class="pedal-section" aria-label="Pedais de movimento">
+      <div class="control-caption">MOVIMENTO</div>
+      <div class="pedals-container">
+        <button class="pedal pedal-brake" id="btn-re" type="button" aria-label="Manter pressionado para dar ré">RÉ</button>
+        <button class="pedal pedal-acc" id="btn-acelerador" type="button" aria-label="Manter pressionado para acelerar">ACELERAR</button>
+      </div>
+      <div class="control-hint">Segure o pedal; solte para parar</div>
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <span id="connection-help">Conecte o celular à rede Wi-Fi Carrinho_ESP para controlar a placa.</span>
+    <span class="safety-note">Teste inicial: saídas dos motores desativadas até instalar um driver adequado.</span>
+  </footer>
+
+  <div id="install-help" class="install-modal hidden" role="dialog" aria-modal="true" aria-labelledby="install-title">
+    <div class="install-panel">
+      <h2 id="install-title">Instalar Controle Carrinho ESP</h2>
+      <p id="install-message">Para instalar, abra o endereço HTTPS no Chrome e use a opção Instalar app.</p>
+      <button id="btn-fechar-ajuda" class="btn-fechar" type="button">Entendi</button>
+    </div>
+  </div>
+
+  <script src="./config.js"></script>
+  <script src="./functions.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
